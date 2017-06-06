@@ -59,18 +59,18 @@ $ tar xf src.tar
 $ cd src
 $ patch -p1 < ../eapjutsu_patch.txt
 ```
-5) Compile cross toolchain for armv6 target
+7) Compile cross toolchain for armv6 target
 ```
 $ sudo make XDEV=arm XDEV_ARCH=armv6 xdev
 ```
-5) Native clang is invoking /usr/bin/ld change to use our generated ld
+8) Native clang is invoking /usr/bin/ld change to use our generated ld
 ```
 $ cd /usr/bin
 $ sudo cp ld ld.orig
 $ sudo rm ld 
 $ sudo ln -s armv6-freebsd-ld ld
 ```
-6) Use Makefile included with your main.c
+9) Use Makefile included with your main.c
 ```
 $ make
 clang -v -march=armv7-a -mfloat-abi=hard -ccc-host-triple arm-elf -integrated-as --sysroot /usr/armv6-freebsd -static -c main.c
@@ -109,7 +109,7 @@ GNU ld 2.17.50 [FreeBSD] 2007-07-03
    armelf_fbsd
 armv6-freebsd-strip sample.elf
 ```
-6) Checks
+10) Checks
 ```
 $ readelf -h sample.elf 
 ELF Header:
